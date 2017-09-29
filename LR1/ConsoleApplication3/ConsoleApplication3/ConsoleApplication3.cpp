@@ -10,7 +10,7 @@ int main(int argc, char** argv)
 {
 	/*-----------------== Часть 1 ==-----------------*/
 	namedWindow("LR1");
-	String imageName("LR1_2.jpg");
+	String imageName("LR1_3.jpg");
 	if (argc > 1)
 	{
 		imageName = argv[1];
@@ -108,7 +108,7 @@ int main(int argc, char** argv)
 		image2.at<unsigned char>(i) = round(((CDF.at(double(image2.at<unsigned char>(i)))-1)/ (image2.rows*image2.cols -1))*255);
 	}
 	/// Вывод полученного изображения
-	imshow("After2", image2);
+	imshow("After Histogram Equalization", image2);
 	/// Построение результирующей гистограммы после эквализации
 	Mat hist_equalization;												// Результирующая гистограмма		
 	calcHist(&image2, 1, 0, Mat(), hist_equalization, 1, &hist_size, &ranges, uniform, accumulate);
