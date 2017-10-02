@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <opencv2\opencv.hpp>
+#include <cmath>
 #include <iostream>
 #include <string>
 #include <vector> 
@@ -51,23 +52,28 @@ int main(int argc, char** argv)
 	
 	float b = 255, a = 0;												// b - верхн€€ граница, a - нижн€€ граница исходной гистограммы
 	float d = 255, c = 0;												// d - верхн€€ граница, c - нижн€€ граница результирующей гистограммы
-	double FivePercent = round((double)(image.cols*image.rows)*0.05);	// 5% от общего числа пикселей исходного изображени€
+	double FivePercent = round((double)(image.cols*image.rows)*0.1);	// 5% от общего числа пикселей исходного изображени€
 	double sum_for_del = 0;												// количество удаленных пикселей
 
 	for (; sum_for_del < FivePercent;)
 		if (copy_hist.at<float>(a) > copy_hist.at<float>(b))			// —равнивнение последнего и первого элемент
 		{
 			sum_for_del += copy_hist.at<float>(b);
+			for (int i = 0; i < image.cols*image.rows; i++)
+				if (abs(double(image.at<unsigned char>(i)) - b)<1 )
+					image.at<unsigned char>(i) = b-1;
 			copy_hist.at<float>(b) = 0;
 			b--;
 		}
 		else
 		{
+			for (int i = 0; i < image.cols*image.rows; i++)
+				if (abs(double(image.at<unsigned char>(i)) - a)<1)
+					image.at<unsigned char>(i) = a+1;
 			sum_for_del += copy_hist.at<float>(a);
 			copy_hist.at<float>(a) = 0;
 			a++;
 		}
-
 	Mat histImage2(hist_h, hist_w, CV_8UC3, Scalar(255, 255, 255));
 	normalize(copy_hist, copy_hist, 0, histImage2.rows, NORM_MINMAX, -1, Mat());
 	for (int i = 1; i < hist_size; i++)
@@ -79,7 +85,7 @@ int main(int argc, char** argv)
 	/// «амена пикселей в исходном изображение 
 	for (int i = 0; i < image.rows*image.cols; i++)
 	{
-		image.at<unsigned char>(i) = (double(image.at<unsigned char>(i)) - a)*((d - c) / (b - a)) + c;
+		image.at<unsigned char>(i) = round((double(image.at<unsigned char>(i)) - a)*((d - c) / (b - a)) + c);
 	}
 	/// ¬ывод полученного изображени€
 	imshow("After", image);
@@ -105,7 +111,7 @@ int main(int argc, char** argv)
 	/// «амена исходных пикселей
 	for (int i = 0; i < image2.rows*image2.cols; i++)
 	{
-		image2.at<unsigned char>(i) = round(((CDF.at(double(image2.at<unsigned char>(i)))-1)/ (image2.rows*image2.cols -1))*255);
+		image2.at<unsigned char>(i) = round(((CDF.at(double(image2.at<unsigned char>(i)))-CDF.at(0))/ (image2.rows*image2.cols -1))*255);
 	}
 	/// ¬ывод полученного изображени€
 	imshow("After Histogram Equalization", image2);
