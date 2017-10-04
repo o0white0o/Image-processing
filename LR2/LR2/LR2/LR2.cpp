@@ -8,11 +8,16 @@
 
 using namespace cv;
 using namespace std;
+void NoName_POTOM_PRODUMAU(Mat &G, Mat image, int K[9]);
 
+int Sobel_operator_x[9] = { 1,0,-1,2,0,-2,1,0,-1 };
+int Sobel_operator_y[9] = { -1,-2,-1,0,0,0,1,2,1 };
+int Privitta_operator_x[9] = { 1,0,-1,1,0,-1,1,0,-1 };
+int Privitta_operator_y[9] = { -1,-1,-1,0,0,0,1,1,1 };
 int main(int argc, char** argv)
 {
 	namedWindow("LR2");
-	String imageName("LR1.jpg");
+	String imageName("LR2_2.jpg");
 	if (argc > 1)
 	{
 		imageName = argv[1];
@@ -49,10 +54,26 @@ int main(int argc, char** argv)
 	}*/
 	imshow("1", image);
 	imshow("2", image_with_frame);
+	/*-----------=== Часть 1 (Оператор Собеля) ===-----------*/
+	NoName_POTOM_PRODUMAU(Gx, image_with_frame, Sobel_operator_x);
+	NoName_POTOM_PRODUMAU(Gy, image_with_frame, Sobel_operator_y);
+	imshow("Gx", Gx);
+	imshow("Gy", Gy);
 	//Gx.at<short>(0) = -1000;
 	//cout << Gx.at<short>(0)<< " "<< static_cast<float>(Gx.at<short>(0));
 
 	waitKey(0);
     return 0;
 }
-
+///	[k0 k1 k2]
+///	[k3 k4 k5]
+///	[k6 k7 k8]
+void NoName_POTOM_PRODUMAU(Mat &G, Mat image, int K[9])
+{
+	for (int i = 1; i < image.rows - 1; i++)
+		for (int j = 1; j < image.cols - 1; j++)
+			G.at<short>(i - 1, j - 1) =
+			K[0] * double(image.at<unsigned char>(i - 1, j - 1)) + K[1] * double(image.at<unsigned char>(i - 1, j)) + K[2] * double(image.at<unsigned char>(i - 1, j + 1))
+			+ K[3] * double(image.at<unsigned char>(i - 1, j - 1)) + K[4] * double(image.at<unsigned char>(i, j)) + K[5] * double(image.at<unsigned char>(i - 1, j + 1))
+			+ K[6] * double(image.at<unsigned char>(i + 1, j + 1)) + K[7] * double(image.at<unsigned char>(i + 1, j)) + K[8] * double(image.at<unsigned char>(i + 1, j + 1));
+}
