@@ -4,3 +4,7 @@
 /----------============LR1============---------/
 
 * [Линейное растяжение и эквалиация](https://github.com/o0white0o/Image-processing/tree/master/LR1)
+
+/----------============LR2============---------/
+
+* [Нахождение границ на изображение](https://github.com/o0white0o/Image-processing/tree/master/LR1)
