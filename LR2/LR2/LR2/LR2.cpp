@@ -15,14 +15,17 @@ using namespace std;
 void NoName_POTOM_PRODUMAU(Mat &G, Mat image, int K[9]);
 void Matrix_addition(Mat &G, Mat Gx, Mat Gy);
 void Delete(Mat &m);
-
-int Sobel_operator_x[9] = { 1,0,-1,2,0,-2,1,0,-1 };
-int Sobel_operator_y[9] = { -1,-2,-1,0,0,0,1,2,1 };
-int Privitta_operator_x[9] = { 1,0,-1,1,0,-1,1,0,-1 };
-int Privitta_operator_y[9] = { -1,-1,-1,0,0,0,1,1,1 };
+void Formulation(Mat Gx, Mat Gy, Mat G, String S);
 
 int main(int argc, char** argv)
 {
+	int Sobel_operator_x[9] = { 1,0,-1,2,0,-2,1,0,-1 };
+	int Sobel_operator_y[9] = { -1,-2,-1,0,0,0,1,2,1 };
+	int Prewitt_operator_x[9] = { 1,0,-1,1,0,-1,1,0,-1 };
+	int Prewitt_operator_y[9] = { -1,-1,-1,0,0,0,1,1,1 };
+	int Roberts_operator_x[9] = { 1,0,0,0,-1,0,0,0,0 };
+	int Roberts_operator_y[9] = { 0,1,0,-1,0,0,0,0,0 };
+
 	namedWindow("LR2");
 	String imageName("LR2_2.jpg");
 	if (argc > 1)
@@ -35,9 +38,6 @@ int main(int argc, char** argv)
 	Mat Gx(image.rows, image.cols, CV_16SC1, Scalar(255, 255, 255));					// CV_16UC1 -  2^16 short = -32 768 до 32 767
 	Mat Gy(image.rows, image.cols, CV_16SC1, Scalar(255, 255, 255));
 	Mat G(image.rows, image.cols, CV_16SC1, Scalar(255, 255, 255));
-	Mat G_uchar(image.rows, image.cols, CV_8UC1, Scalar(255, 255, 255));
-	Mat Gx_uchar(image.rows, image.cols, CV_8UC1, Scalar(255, 255, 255));
-	Mat Gy_uchar(image.rows, image.cols, CV_8UC1, Scalar(255, 255, 255));
 	/// Вывод исходного изображения
 	imshow("Input", image);
 
@@ -61,22 +61,23 @@ int main(int argc, char** argv)
 	/*-----------=== Часть 1 (Оператор Собеля) ===-----------*/
 	NoName_POTOM_PRODUMAU(Gx, image_with_frame, Sobel_operator_x);
 	NoName_POTOM_PRODUMAU(Gy, image_with_frame, Sobel_operator_y);
-	Matrix_addition(G, Gx, Gy);
-	Gx.convertTo(Gx_uchar, CV_8UC1);
-	Gy.convertTo(Gy_uchar, CV_8UC1);
-	G.convertTo(G_uchar, CV_8UC1);
-	imshow("Sobel operator: Gx", Gx_uchar);
-	imshow("Sobel operator: Gy", Gy_uchar);
-	imshow("Sobel operator: G", G_uchar);
-	
+	Formulation(Gx, Gy, G, "Sobel operator");
 	/// Обнуление переменных
 	Delete(Gx);
 	Delete(Gy);
 	Delete(G);
-	Delete(Gx_uchar);
-	Delete(Gy_uchar);
-	Delete(G_uchar);
-	/*-----------=== Часть 2 (Оператор Робертса) ===-----------*/
+	/*-----------=== Часть 2 (Оператор Прюитт) ===-----------*/
+	NoName_POTOM_PRODUMAU(Gx, image_with_frame, Prewitt_operator_x);
+	NoName_POTOM_PRODUMAU(Gy, image_with_frame, Prewitt_operator_y);
+	Formulation(Gx, Gy, G, "Prewitt operator");
+	/// Обнуление переменных
+	Delete(Gx);
+	Delete(Gy);
+	Delete(G);
+	/*-----------=== Часть 3 (Оператор Робертса) ===-----------*/
+	NoName_POTOM_PRODUMAU(Gx, image_with_frame, Roberts_operator_x);
+	NoName_POTOM_PRODUMAU(Gy, image_with_frame, Roberts_operator_y);
+	Formulation(Gx, Gy, G, "Roberts cross");
 
 	waitKey(0);
     return 0;
@@ -118,4 +119,20 @@ void Delete(Mat &m)
 		default:
 			break;
 		}
+}
+
+/// Формализация
+void Formulation(Mat Gx, Mat Gy, Mat G, String S)
+{
+	Matrix_addition(G, Gx, Gy);
+	Mat G_uchar(G.rows, G.cols, CV_8UC1, Scalar(255, 255, 255));
+	Mat Gx_uchar(Gx.rows, Gx.cols, CV_8UC1, Scalar(255, 255, 255));
+	Mat Gy_uchar(Gy.rows, Gy.cols, CV_8UC1, Scalar(255, 255, 255));
+	Gx.convertTo(Gx_uchar, CV_8UC1);
+	Gy.convertTo(Gy_uchar, CV_8UC1);
+	G.convertTo(G_uchar, CV_8UC1);
+	/// Вывод полученных изображений на экран
+	imshow(S + " : Gx", Gx_uchar);
+	imshow(S + " : Gy", Gy_uchar);
+	imshow(S + " : G", G_uchar);
 }

@@ -1,5 +1,5 @@
 ﻿  LR2.cpp
-f:\users\aleksei\documents\github\image-processing\lr2\lr2\lr2\lr2.cpp(94): warning C4244: =: преобразование "float" в "short", возможна потеря данных
-f:\users\aleksei\documents\github\image-processing\lr2\lr2\lr2\lr2.cpp(101): warning C4244: =: преобразование "float" в "short", возможна потеря данных
+f:\users\aleksei\documents\github\image-processing\lr2\lr2\lr2\lr2.cpp(89): warning C4244: =: преобразование "float" в "short", возможна потеря данных
+f:\users\aleksei\documents\github\image-processing\lr2\lr2\lr2\lr2.cpp(96): warning C4244: =: преобразование "float" в "short", возможна потеря данных
   LR2.vcxproj -> F:\Users\Aleksei\Documents\GitHub\Image-processing\LR2\LR2\x64\Debug\LR2.exe
   LR2.vcxproj -> F:\Users\Aleksei\Documents\GitHub\Image-processing\LR2\LR2\x64\Debug\LR2.pdb (Partial PDB)
