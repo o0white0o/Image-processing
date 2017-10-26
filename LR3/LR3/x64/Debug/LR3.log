@@ -1,0 +1,6 @@
+﻿  LR3.cpp
+e:\magistracy\1 semester\image-processing\lr3\lr3\lr3.cpp(52): warning C4244: =: преобразование "float" в "short", возможна потеря данных
+e:\magistracy\1 semester\image-processing\lr3\lr3\lr3.cpp(78): warning C4244: =: преобразование "float" в "short", возможна потеря данных
+e:\magistracy\1 semester\image-processing\lr3\lr3\lr3.cpp(85): warning C4244: =: преобразование "float" в "short", возможна потеря данных
+  LR3.vcxproj -> E:\Magistracy\1 semester\Image-processing\LR3\LR3\x64\Debug\LR3.exe
+  LR3.vcxproj -> E:\Magistracy\1 semester\Image-processing\LR3\LR3\x64\Debug\LR3.pdb (Partial PDB)

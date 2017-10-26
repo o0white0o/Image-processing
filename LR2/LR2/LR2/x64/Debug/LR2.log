@@ -1,7 +1,5 @@
-﻿  stdafx.cpp
-  LR2.cpp
+﻿  LR2.cpp
 e:\magistracy\1 semester\image-processing\lr2\lr2\lr2\lr2.cpp(98): warning C4244: =: преобразование "float" в "short", возможна потеря данных
 e:\magistracy\1 semester\image-processing\lr2\lr2\lr2\lr2.cpp(105): warning C4244: =: преобразование "float" в "short", возможна потеря данных
-  LINK : не найден или не выполнена сборка E:\Magistracy\1 semester\Image-processing\LR2\LR2\x64\Debug\LR2.exe при последней инкрементной компоновке; выполняется полная компоновка
   LR2.vcxproj -> E:\Magistracy\1 semester\Image-processing\LR2\LR2\x64\Debug\LR2.exe
   LR2.vcxproj -> E:\Magistracy\1 semester\Image-processing\LR2\LR2\x64\Debug\LR2.pdb (Partial PDB)

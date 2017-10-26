@@ -131,11 +131,17 @@ void Formulation(Mat Gx, Mat Gy, Mat G, String S)
 	Mat G_uchar(G.rows, G.cols, CV_8UC1, Scalar(255, 255, 255));
 	Mat Gx_uchar(Gx.rows, Gx.cols, CV_8UC1, Scalar(255, 255, 255));
 	Mat Gy_uchar(Gy.rows, Gy.cols, CV_8UC1, Scalar(255, 255, 255));
-	Gx.convertTo(Gx_uchar, CV_8UC1);
-	Gy.convertTo(Gy_uchar, CV_8UC1);
-	G.convertTo(G_uchar, CV_8UC1);
+	normalize(Gx, Gx, -32767,			// Линейное растяжение 
+		32767, NORM_MINMAX, -1, Mat());
+	normalize(Gy, Gy, -32767,			// Линейное растяжение 
+		32767, NORM_MINMAX, -1, Mat());
+	normalize(G, G, -32767,			// Линейное растяжение 
+		32767, NORM_MINMAX, -1, Mat());
+	//Gx.convertTo(Gx_uchar, CV_8UC1);
+	//Gy.convertTo(Gy_uchar, CV_8UC1);
+	//G.convertTo(G_uchar, CV_8UC1);
 	/// Вывод полученных изображений на экран
-	imshow(S + " : Gx", Gx_uchar);
-	imshow(S + " : Gy", Gy_uchar);
-	imshow(S + " : G", G_uchar);
+	imshow(S + " : Gx", Gx);
+	imshow(S + " : Gy", Gy);
+	imshow(S + " : G", G);
 }
