@@ -7,4 +7,7 @@
 
 /----------============LR2============---------/
 
-* [Нахождение границ на изображение](https://github.com/o0white0o/Image-processing/tree/master/LR1)
+* [Нахождение границ на изображение](https://github.com/o0white0o/Image-processing/tree/master/LR2)
+
+/----------============LR3============---------/
+* [Сглаживание и повышение резкости] (https://github.com/o0white0o/Image-processing/tree/master/LR3)
