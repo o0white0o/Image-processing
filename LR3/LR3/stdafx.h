@@ -5,11 +5,15 @@
 
 #pragma once
 
+
 #include "targetver.h"
 
 #include <stdio.h>
 #include <tchar.h>
-
+#include <math.h>
+#include <iostream>
+#include <string>
+#include <opencv2\opencv.hpp>
 
 
 // TODO: Установите здесь ссылки на дополнительные заголовки, требующиеся для программы
