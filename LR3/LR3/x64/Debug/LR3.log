@@ -1,8 +1,0 @@
-﻿  LR3.cpp
-e:\magistracy\1 semester\image-processing\lr3\lr3\lr3.cpp(53): warning C4244: =: преобразование "float" в "short", возможна потеря данных
-e:\magistracy\1 semester\image-processing\lr3\lr3\lr3.cpp(115): warning C4244: =: преобразование "float" в "short", возможна потеря данных
-  e:\magistracy\1 semester\image-processing\lr3\lr3\lr3.cpp(49): note: выполняется компиляция ссылки на экземпляр шаблон функции "void Matrix_multiplication<short,uchar>(cv::Mat_<short> &,cv::Mat_<uchar>,int [])"
-e:\magistracy\1 semester\image-processing\lr3\lr3\lr3.cpp(204): warning C4244: =: преобразование "float" в "short", возможна потеря данных
-  e:\magistracy\1 semester\image-processing\lr3\lr3\lr3.cpp(58): note: выполняется компиляция ссылки на экземпляр шаблон функции "void Matrix_addition<short>(cv::Mat_<short> &,cv::Mat_<short>,cv::Mat_<short>)"
-  LR3.vcxproj -> E:\Magistracy\1 semester\Image-processing\LR3\LR3\x64\Debug\LR3.exe
-  LR3.vcxproj -> E:\Magistracy\1 semester\Image-processing\LR3\LR3\x64\Debug\LR3.pdb (Partial PDB)

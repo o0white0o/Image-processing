@@ -27,7 +27,7 @@ int main()
 	int Roberts_operator_y[9] = { 0,1,0,-1,0,0,0,0,0 };
 
 	namedWindow("LR3");
-	String imageName("LR3_1.png");
+	String imageName("LR3_2.png");
 	Mat_<uchar> image_input				// Исходное изображение в оттенках серого
 		= imread(imageName.c_str(), IMREAD_GRAYSCALE);
 	Mat_<short> image_1					// Изображение для нахождения границ
@@ -41,8 +41,8 @@ int main()
 	// Применение Лапласиана без сглаживания
 	Mat_<uchar> image_with_frame		// Изображение с рамкой
 		= Frame(image_input);		
-	//Matrix_multiplication(image_1, image_with_frame, Laplacian);
-	//imshow("Without smoothing", Convert(image_1));
+	Matrix_multiplication(image_1, image_with_frame, Laplacian);
+	imshow("Without smoothing", Convert(image_1));
 	// Применение фильтра Гауcса 3х3  
 	// для сглаживания изображения
 	image_with_frame = Frame(image_input);			// Создание изображения с рамкой
@@ -62,10 +62,10 @@ int main()
 	//Formulation(image_input, "Sobel", Sobel_operator_x, Sobel_operator_y);
 	//Formulation(image_input, "Prewitt", Prewitt_operator_x, Prewitt_operator_y);
 	//Formulation(image_input, "Roberts", Roberts_operator_x, Roberts_operator_y);
-	//image_1 = Formulation(image_input, "Prewitt", Prewitt_operator_x, Prewitt_operator_y);
+	image_1 = Formulation(image_input, "Prewitt", Prewitt_operator_x, Prewitt_operator_y);
 	/*-----------=== Часть 2 ===-----------*/
 	// Повышение резкости
-	//image_1 = Formulation(image_input, "Prewitt", Prewitt_operator_x, Prewitt_operator_y);	// разкомментить, если с помощью прюитта
+	//image_1 = Formulation(image_input, "Prewitt", Prewitt_operator_x, Prewitt_operator_y);	// раcкомментить, если с помощью прюитта
 	normalize(image_1, image_1, 10,				// от 1 до 1.3 
 		13, NORM_MINMAX, -1, Mat());
 	for (int i = 0; i < image_2.rows*image_2.cols; i++)
