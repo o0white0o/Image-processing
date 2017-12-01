@@ -15,8 +15,8 @@ _Block::_Block()
 {
 	this->i_old = 0;
 	this->j_old = 0;
-	this->SAD = 9999;
-	this->SSD = 9999;
+	this->SAD = 99999;
+	this->SSD = 99999;
 	this->i_new = 0;
 	this->j_new = 0;
 }
